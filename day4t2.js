@@ -159,3 +159,45 @@
 // })(arr1, arr2);
 
  console.log("Median (IIFE):", medianIIFE);
+
+ const arrayWithDuplicates = [5, 2, 8, 1, 3, 2, 5, 8, 3, 1];
+
+const sortedArrayAnonymous = function(arr) {
+  const uniqueArray = arr.filter((value, index, self) => {
+    return self.indexOf(value) === index;
+  });
+
+  return uniqueArray.slice().sort((a, b) => a - b);
+};
+
+const resultAnonymous = sortedArrayAnonymous(arrayWithDuplicates);
+
+console.log("Original Array:", arrayWithDuplicates);
+console.log("Sorted Array without Duplicates (Anonymous Function):", resultAnonymous);
+// const arrayWithDuplicates = [5, 2, 8, 1, 3, 2, 5, 8, 3, 1];
+
+// const sortedArrayIIFE = (function(arr) {
+//   const uniqueArray = arr.filter((value, index, self) => {
+//     return self.indexOf(value) === index;
+//   });
+
+//   return uniqueArray.slice().sort((a, b) => a - b);
+// })(arrayWithDuplicates);
+
+// console.log("Original Array:", arrayWithDuplicates);
+// console.log("Sorted Array without Duplicates (IIFE):", sortedArrayIIFE);
+const arrayWithDuplicates = [5, 2, 8, 1, 3];
+const k = 2; // Number of rotations
+
+const sortedArrayIIFE = (function(arr, rotations) {
+  const rotatedArray = arr.slice();
+  for (let i = 0; i < rotations; i++) {
+    const firstElement = rotatedArray.shift();
+    rotatedArray.push(firstElement);
+  }
+
+  return rotatedArray.slice().sort((a, b) => a - b);
+})(arrayWithDuplicates, k);
+
+console.log("Original Array:", arrayWithDuplicates);
+console.log(`Sorted Array after ${k} Rotations (IIFE):`, sortedArrayIIFE);
